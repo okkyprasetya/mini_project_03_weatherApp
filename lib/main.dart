@@ -38,8 +38,8 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   String _weather = 'Loading...';
   String _city = '';
-  double _latitude = 0.0;
-  double _longitude = 0.0;
+  String _latitude = '';
+  String _longitude = '';
   String _iconURL='';
 
   @override
@@ -62,8 +62,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
       String iconCode = data['weather'][0]['icon'];
       setState(() {
         _weather = weather.toTitleCase();
-        _longitude = position.latitude;
-        _latitude = position.longitude;
+        _longitude = position.latitude.toString();
+        _latitude = position.longitude.toString();
         _iconURL = 'http://openweathermap.org/img/w/$iconCode.png';
       });
     } else {
@@ -110,7 +110,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               'Map Location',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Image.network('https://maps.googleapis.com/maps/api/staticmap?center=$_latitude,$_longitude=&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$_latitude,$_longitude&key=AIzaSyDLcwxUggpPZo8lcbH0TB4Crq5SJjtj4ag'),
+            Image.network('https://maps.googleapis.com/maps/api/staticmap?center=$_latitude,$_longitude&zoom=14&size=300x200&key='),
             SizedBox(height: 20),
             Text(
               'City',
