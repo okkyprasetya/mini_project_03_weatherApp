@@ -40,7 +40,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
   String _city = '';
   double _latitude = 0.0;
   double _longitude = 0.0;
-  String _staticMapUrl='';
   String _iconURL='';
 
   @override
@@ -94,15 +93,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
   }
 
-  String buildStaticMapUrl(){
-    final String APIkey = '+====+';
-    return _staticMapUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=${_latitude},${_longitude}&zoom=12&size=400x200&markers=${_latitude},${_longitude}&key=${APIkey}';
-  }
+
 
 
   @override
   Widget build(BuildContext context) {
-    print(buildStaticMapUrl());
     return Scaffold(
       appBar: AppBar(
         title: Text('Weather App'),
@@ -115,7 +110,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               'Map Location',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Image.network(buildStaticMapUrl()),
+            Image.network('https://maps.googleapis.com/maps/api/staticmap?center=$_latitude,$_longitude=&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$_latitude,$_longitude&key=AIzaSyDLcwxUggpPZo8lcbH0TB4Crq5SJjtj4ag'),
             SizedBox(height: 20),
             Text(
               'City',
